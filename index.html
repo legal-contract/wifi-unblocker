@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terms & Access Gate</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Fullscreen front page (terms gate) */
+        #terms-screen {
+            position: fixed;
+            inset: 0;
+            background: #0b0c10;
+            color: #c5c6c7;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            z-index: 999;
+        }
+
+        #terms-box {
+            max-width: 800px;
+            width: 100%;
+            background: #1f2833;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        #terms-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        #terms-text {
+            width: 100%;
+            height: 260px;
+            resize: none;
+            border-radius: 6px;
+            border: 1px solid #45a29e;
+            padding: 10px;
+            background: #0b0c10;
+            color: #c5c6c7;
+            font-size: 0.9rem;
+        }
+
+        #agree-container {
+            margin-top: 18px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        #agree-btn {
+            background: #45a29e;
+            color: #0b0c10;
+            font-weight: bold;
+        }
+
+        #cancel-btn {
+            background: #c5c6c7;
+            color: #0b0c10;
+        }
+
+        /* Second page content */
+        #main-content {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background: #ffffff;
+        }
+
+        #giant-textbox {
+            width: 100%;
+            height: calc(100vh - 40px);
+            resize: none;
+            font-size: 1rem;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FRONT PAGE: TERMS SCREEN -->
+    <div id="terms-screen">
+        <div id="terms-box">
+            <div id="terms-title">
+                NON DISCLOSURE AND GENERAL LIABILITY AND RESPONSIBILITY AND T's + C's AGREEMENT
+            </div>
+            <textarea id="terms-text" readonly>
+By pressing “Agree”, you confirm that you are over 18, and have read, understood, and voluntarily accepted all Terms, Conditions, Non‑Disclosure Agreements, General Liability Releases, and statements of responsibility associated with this website; this acceptance constitutes a binding agreement under the laws of New South Wales, Australia.
+
+
+
+NDA(non disclosure agreement)
+
+You are immediately agreeing to lose your right to communicate; the contents of this site, its owners, or your manner of obtaining it, in any way, shape, or form to anyone or thing.
+Disclosing the creators of this site or the intent to do so may result in legal action being taken against you, as it may compromise the safety of the creators.
+
+
+
+
+General Liability Release
+
+We are not liable for any damages, consequences, or outcomes arising from your use, misuse, distribution, or interpretation of the contents of this site, including device damage, network disruption, data loss, disciplinary actions, legal consequences, or harm caused to yourself, others, or third‑party systems; you assume full responsibility for all actions taken using this site, including misuse, unauthorized access, attempts to bypass network restrictions, or interactions with schools, workplaces, administrators, or law enforcement, and we disclaim liability for any decisions you make based on the information provided, any reliance on the site’s contents, and any outcomes resulting from attempts to modify systems or access networks without permission.
+
+
+
+
+Terms and Conditions
+
+You are not to use this site or its contents to violate any local, state, federal, or international laws or rules, and any misuse—including unlawful activity, unauthorized access, or actions that breach network, institutional, or administrative policies—may result in consequences under the laws of New South Wales, Australia; we are not responsible for any outcomes arising from your use of this website.
+You may not use this website or its contents in any manner that directly or indirectly harms others, causes damage to networks or devices, disrupts services, violates privacy, or breaches any local, state, federal, or international laws, rules, policies, agreements, or administrative requirements; all use must remain lawful, authorized, and compliant with the regulations applicable within New South Wales, Australia and any other relevant jurisdictions.
+You may not use this site or its contents to bypass any Wi‑Fi or Ethernet restrictions, requirements, policies, or access controls; this site and its materials are provided solely for lawful and authorized use, and are not intended for circumventing network security or administrative rules.
+You are agreeing to accept full responsibility for any legal consequences resulting from your actions, and acknowledge that any disputes arising from your use of this site will be handled under the laws of New South Wales, Australia.
+You may not steal, edit, reproduce, or redistribute any content stored within this website, nor claim it as your own; all materials on this site are the exclusive property of the creator and are protected under Australian Copyright Act 1968 (Cth) and applicable international copyright laws.
+Breaking or violating any of the above may constitute a breach of contract enforceable under the laws of New South Wales, Australia, and may also be actionable under applicable international contract and privacy laws where relevant.
+We reserve the right to pursue legal action, including seeking financial damages through the courts, for any breach of this agreement; all disputes or claims arising from such breaches will be handled under the laws of New South Wales, Australia, and you acknowledge that you may be held liable for any proven losses or damages resulting from your actions.
+            </textarea>
+
+            <div id="agree-container">
+                <button id="cancel-btn" onclick="window.close()">Exit</button>
+                <button id="agree-btn">Agree</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECOND PAGE: MAIN CONTENT WITH GIANT TEXTBOX -->
+    <div id="main-content" style="display:none;">
+        <textarea id="giant-textbox">
+[TEXTBOX]
+
+This is where the instructions will go
+        </textarea>
+    </div>
+
+    <script>
+        const agreeBtn = document.getElementById('agree-btn');
+        const termsScreen = document.getElementById('terms-screen');
+        const mainContent = document.getElementById('main-content');
+
+        agreeBtn.addEventListener('click', () => {
+            // Hide terms screen and show main content
+            termsScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
