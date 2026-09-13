@@ -149,10 +149,64 @@ We reserve the right to pursue legal action, including seeking financial damages
 
     <!-- SECOND PAGE: MAIN CONTENT WITH GIANT TEXTBOX -->
     <div id="main-content" style="display:none;">
-        <textarea id="giant-textbox">
-[TEXTBOX]
+        <textarea id="giant-textbox" readonly>
+01
+Install Docker Desktop
+Docker Desktop is required to create the local network environment Roblox will use.
 
-This is where the instructions will go
+Windows: Download from docker.com/products/docker-desktop
+macOS: Download from docker.com/products/docker-desktop
+
+Open the installer
+
+Accept all prompts
+
+Restart your computer if asked
+
+02
+Start Docker Desktop
+Docker must be running before you can create the network Roblox will use.
+
+Open Docker Desktop from the Start Menu (Windows) or Applications folder (macOS)
+
+Wait until the status shows "Running"
+
+03
+Create a Local Proxy Container
+This container will act as the connection point Roblox uses.
+
+In Docker Desktop, open the Terminal
+
+Type: docker run -d --name localproxy -p 8080:8080 alpine/socat tcp-listen:8080,fork tcp:roblox.com:443
+
+Press Enter
+
+Wait for the container to show as "Running"
+
+04
+Configure Roblox to Use the Local Proxy
+Roblox will send its connection through the Docker container.
+
+Windows: Use Proxifier
+macOS: Use Proxifier for Mac
+
+Install Proxifier from proxifier.com
+
+Open Proxifier
+
+Add a new proxy server: Address 127.0.0.1, Port 8080
+
+Create a rule: Apply the proxy to RobloxPlayerBeta.exe
+
+05
+Launch Roblox
+Roblox will now run through the local proxy you created.
+
+Open Roblox normally
+
+Roblox will connect through the Docker container
+
+If Roblox opens and loads, the setup is working
         </textarea>
     </div>
 
@@ -162,7 +216,6 @@ This is where the instructions will go
         const mainContent = document.getElementById('main-content');
 
         agreeBtn.addEventListener('click', () => {
-            // Hide terms screen and show main content
             termsScreen.style.display = 'none';
             mainContent.style.display = 'block';
         });
