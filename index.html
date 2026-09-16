@@ -14,6 +14,35 @@
             width: 100%;
             height: 100%;
             font-family: Arial, sans-serif;
+            padding-top: 40px; /* space for banner */
+        }
+
+        /* Scrolling red warning banner */
+        #warning-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ff0000;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 1rem;
+            z-index: 2000;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #warning-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollBanner 12s linear infinite;
+        }
+
+        @keyframes scrollBanner {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Fullscreen front page (terms gate) */
@@ -103,6 +132,11 @@
 </head>
 <body>
 
+    <!-- SCROLLING WARNING BANNER -->
+    <div id="warning-banner">
+        <span>⚠ WARNING: THIS SITE IS NO LONGER BEING SUPPORTED OR UPDATED - USE OF CONTENT IS NOT AUTHORISED, ENCOURAGED, OR ADVISED BY THE CREATORS AND MAY BE UNSAFE OR BREACHING LOCAL OR INTERNATIONAL LAWS, RULES, OR REGULATIONS - SITE MAY STILL EXIST FOR ARCHIVE REASONS ONLY - THIS STATEMENT IS VALID AS OF 21:10 16/09/2026 BUT IS NOT LIMITED TO THAT DATE AND AFTER - LAWS, RULES, AND REGULATIONS MAY EXIST FOR A REASON AND IT IS NOT ADVISED TO BREACH OR BREAK THEM AS IT MAY RESULT IN DISCIPLINARY ACTIONS BEING TAKEN AGAINST YOUR FOR WHICH WE ARE NOT RESPONSIBLE ⚠</span>
+    </div>
+
     <!-- FRONT PAGE: TERMS SCREEN -->
     <div id="terms-screen">
         <div id="terms-box">
@@ -110,7 +144,7 @@
                 NON DISCLOSURE AND GENERAL LIABILITY AND RESPONSIBILITY AND T's + C's AGREEMENT
             </div>
             <textarea id="terms-text" readonly>
-By pressing “Agree”, you confirm that you are over 18, do not work in the education industry, and have read, understood, and voluntarily accepted all Terms, Conditions, Non‑Disclosure Agreements, General Liability Releases, and statements of responsibility associated with this website; this acceptance constitutes a binding agreement under the laws of New South Wales, Australia.
+By pressing “Agree”, you confirm that you are over 18, and have read, understood, and voluntarily accepted all Terms, Conditions, Non‑Disclosure Agreements, General Liability Releases, and statements of responsibility associated with this website; this acceptance constitutes a binding agreement under the laws of New South Wales, Australia.
 
 
 
@@ -150,63 +184,175 @@ We reserve the right to pursue legal action, including seeking financial damages
     <!-- SECOND PAGE: MAIN CONTENT WITH GIANT TEXTBOX -->
     <div id="main-content" style="display:none;">
         <textarea id="giant-textbox" readonly>
-01
-Install Docker Desktop
-Docker Desktop is required to create the local network environment Roblox will use.
+01 — Install Docker Desktop
+Docker Desktop lets you create a “virtual network tool” on your computer. The application you want unblocked (with Wi-Fi administrators permission) will later be routed through this tool so you can observe how the system reacts.
 
-Windows: Download from docker.com/products/docker-desktop
-macOS: Download from docker.com/products/docker-desktop
+Windows Installation
+Go to: docker.com/products/docker-desktop
 
-Open the installer
+Click Download for Windows
 
-Accept all prompts
+When the file finishes downloading, double‑click it.
 
-Restart your computer if asked
+If Windows asks for permission, click Yes.
 
-02
-Start Docker Desktop
-Docker must be running before you can create the network Roblox will use.
+Click OK, Next, or Accept on every prompt.
 
-Open Docker Desktop from the Start Menu (Windows) or Applications folder (macOS)
+When the installer finishes, click Close.
 
-Wait until the status shows "Running"
+If Docker asks you to restart your computer, click Restart Now.
 
-03
-Create a Local Proxy Container
-This container will act as the connection point Roblox uses.
+macOS Installation
+Go to: docker.com/products/docker-desktop
 
-In Docker Desktop, open the Terminal
+Click Download for Mac
 
-Type: docker run -d --name localproxy -p 8080:8080 alpine/socat tcp-listen:8080,fork tcp:roblox.com:443
+Open the downloaded .dmg file.
+
+Drag Docker.app into the Applications folder.
+
+Open Docker from Applications.
+
+If macOS asks for permission, click Allow.
+
+Restart your Mac if Docker requests it.
+
+If you have done this correctly, you should see a small whale icon in your system tray (Windows) or menu bar (macOS).
+
+02 — Start Docker Desktop
+Docker must be running before you can open your application that you want unblocked.
+
+Steps
+Open Docker Desktop
+
+Windows: Start Menu → type “Docker Desktop”
+
+macOS: Applications → Docker
+
+Wait for the main window to load.
+
+At the bottom-left, look for a green indicator that says Running.
+
+If it does NOT say Running
+Wait 30–60 seconds — Docker sometimes takes time to start.
+
+If it shows an error, click Restart inside Docker Desktop.
+
+03 — Create a Local Proxy Container
+This container acts like a “middleman” between Roblox and the internet.
+It does not unblock anything — it simply lets you observe how Roblox behaves when routed through it.
+
+Open a Terminal inside Docker Desktop
+In Docker Desktop, click Terminal (top-right corner).
+
+A black window will appear.
+
+Type this command exactly:
+
+docker run -d --name localproxy -p 8080:8080 alpine/socat tcp-listen:8080,fork tcp:roblox.com:443
 
 Press Enter
+What this command does
+docker run -d → starts a container in the background
 
-Wait for the container to show as "Running"
+--name localproxy → names it “localproxy”
 
-04
-Configure Roblox to Use the Local Proxy
-Roblox will send its connection through the Docker container.
+-p 8080:8080 → opens port 8080 on your computer
 
-Windows: Use Proxifier
-macOS: Use Proxifier for Mac
+alpine/socat → uses a tiny networking tool
 
-Install Proxifier from proxifier.com
+tcp-listen:8080,fork → listens for connections
+
+tcp:roblox.com:443 (for example) → forwards them to the application you want unblocked’s main HTTPS endpoint
+
+How to confirm it worked
+Go back to Docker Desktop
+
+Click Containers
+
+You should see localproxy with a green Running indicator
+
+If it says Exited, click the container → Restart.
+
+04 — Configure your application that will be unblocked to Use the Local Proxy
+the application you want unblocked does not automatically use your Docker proxy.
+You must force the application you want unblocked's traffic through it using Proxifier.
+
+Install Proxifier
+Go to: proxifier.com
+
+Download Proxifier Standard Edition (Windows or macOS)
+
+Install it like a normal program:
+
+Windows: double‑click installer → Next → Next → Finish
+
+macOS: open .dmg → drag Proxifier to Applications
 
 Open Proxifier
+Windows: Start Menu → Proxifier
 
-Add a new proxy server: Address 127.0.0.1, Port 8080
+macOS: Applications → Proxifier
 
-Create a rule: Apply the proxy to RobloxPlayerBeta.exe
+Add the Proxy Server
+In Proxifier, click Profile (top menu)
 
-05
-Launch Roblox
-Roblox will now run through the local proxy you created.
+Click Proxy Servers
 
-Open Roblox normally
+Click Add
 
-Roblox will connect through the Docker container
+Enter:
 
-If Roblox opens and loads, the setup is working
+Address: 127.0.0.1
+
+Port: 8080
+
+Protocol: HTTPS (or SOCKS5 if HTTPS is unavailable)
+
+Click OK
+
+Proxifier will test the connection — it should say Proxy is OK
+
+Create a Rule for the application you want unblocked
+Click Profile → Proxification Rules
+
+Click Add Rule
+
+Name it: Roblox Proxy
+
+(Roblox was an example and will be used as such from here onwards, remember that using this to unblock Roblox on a network where it is banned may be classed as a felony in some locations)
+
+Click Applications
+
+Click Add
+
+Browse to the Roblox executable:
+
+Windows:  
+C:\Users\<YourName>\AppData\Local\Roblox\Versions\*\RobloxPlayerBeta.exe
+
+macOS:  
+/Applications/Roblox.app/Contents/MacOS/RobloxPlayer
+
+Select the proxy you added: 127.0.0.1:8080
+
+Click OK
+
+What this rule does
+It forces only Roblox to send its traffic through your Docker proxy.
+No other apps are affected.
+
+05 — Launch Roblox
+Now you can observe how Roblox behaves when routed through your controlled proxy while Cisco Umbrella is active.
+
+Steps
+Open Roblox normally (desktop app)
+
+Proxifier will show live logs of Roblox traffic
+
+Docker will forward Roblox’s requests to roblox.com:443
+
+If this does not result in the unblocking of you chosen application in an environment where no laws have been broken, please contact the creator of this website in private, this may not be possible once support for the site has ended.
 
             *WARNING*
             
@@ -222,7 +368,7 @@ We are not required to inform you of these risks as we are not responsible for y
 
 
 
-            THIS SITE IS NO LONGER BEING SUPPORTED AND IS NOT ADVISED TO BE FOLLOWED
+            THIS SITE IS NO LONGER BEING SUPPORTED AND IT IS NOT ADVISED FOR ITS INSTUCTIONS TO BE FOLLOWED
         </textarea>
     </div>
 
