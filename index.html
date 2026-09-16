@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Hello internet traveller, we both know this site doesnt do anything, so why bother going on... This is only the start.. this is my first time leaving secret messages actually, i might make a game where you play by exploring these, or i could make a faker social media channel of it tbf... eh... -->
     <meta charset="UTF-8">
     <title>Terms & Access Gate</title>
     <style>
@@ -9,6 +10,35 @@
             margin: 0;
             padding: 0;
         }
+        /* ERROR POPUP */
+        #errorPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#errorBox {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 0 20px black;
+}
+
+#errorBox button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
         body, html {
             width: 100%;
@@ -129,13 +159,23 @@
             padding: 0px;
         }
     </style>
-</head>
-<body>
+    <!-- cicada -->
+    </head>
+    <body>
+    <!-- ERROR POPUP -->
+<div id="errorPopup">
+    <div id="errorBox">
+        <h2>This site is no longer supported - the following agreement still applies but we no longer advise you administer or use the content used within this website even in legal settings, thus making its use your responsibility. Press "Accept" if you agree willingly and consciously to these conditions.</h2>
+        <button onclick="acceptError()">Accept</button>
+    </div>
+</div>
+<!-- Xie0:7'Ij3#Ee//o8 -->
 
     <!-- SCROLLING WARNING BANNER -->
     <div id="warning-banner">
-        <span>⚠ WARNING: THIS SITE IS NO LONGER BEING SUPPORTED OR UPDATED - USE OF CONTENT IS NOT AUTHORISED, ENCOURAGED, OR ADVISED BY THE CREATORS AND MAY BE UNSAFE OR BREACHING LOCAL OR INTERNATIONAL LAWS, RULES, OR REGULATIONS - SITE MAY STILL EXIST FOR ARCHIVE REASONS ONLY - THIS STATEMENT IS VALID AS OF 21:10 16/09/2026 BUT IS NOT LIMITED TO THAT DATE AND AFTER - LAWS, RULES, AND REGULATIONS MAY EXIST FOR A REASON AND IT IS NOT ADVISED TO BREACH OR BREAK THEM AS IT MAY RESULT IN DISCIPLINARY ACTIONS BEING TAKEN AGAINST YOUR FOR WHICH WE ARE NOT RESPONSIBLE ⚠</span>
+        <span>⚠ WARNING: THIS SITE IS NO LONGER BEING SUPPORTED OR UPDATED - USE OF CONTENT IS NOT AUTHORISED, ENCOURAGED, OR ADVISED BY THE CREATORS AND MAY BE UNSAFE OR BREACHING LOCAL OR INTERNATIONAL LAWS, RULES, OR REGULATIONS - SITE MAY STILL EXIST FOR ARCHIVE REASONS ONLY - THIS STATEMENT IS VALID AS OF 21:10 16/09/2026 BUT IS NOT LIMITED TO THAT DATE AND AFTER - LAWS, RULES, AND REGULATIONS MAY EXIST FOR A REASON AND IT IS NOT ADVISED TO BREACH OR BREAK THEM AS IT MAY RESULT IN DISCIPLINARY ACTIONS BEING TAKEN AGAINST YOUR FOR WHICH WE ARE NOT RESPONSIBLE - CODE TO RESET SITE IS "reset" - ADMINS MAY NO LONGER VEIW THIS SITE⚠</span>
     </div>
+<!-- You found the message i scribed on these walls on 16/09/2026... well done -->
 
     <!-- FRONT PAGE: TERMS SCREEN -->
     <div id="terms-screen">
@@ -382,6 +422,38 @@ We are not required to inform you of these risks as we are not responsible for y
             mainContent.style.display = 'block';
         });
     </script>
+    <script>
+function acceptError() {
+    document.getElementById("errorPopup").style.display = "none";
+    document.getElementById("termsPage").style.display = "block";
+}
+</script>
 
 </body>
+<!-- This is a a message from God, go buy beer and gamble everything on red, Trust -->
+<script>
+document.addEventListener("keydown", function(e) {
+    // Track typed characters silently
+    window._secretBuffer = (window._secretBuffer || "") + e.key.toLowerCase();
+
+    // Keep buffer from growing forever
+    if (window._secretBuffer.length > 20) {
+        window._secretBuffer = window._secretBuffer.slice(-20);
+    }
+
+    // Check for the hidden command
+    if (window._secretBuffer.includes("reset")) {
+        location.reload(); // Refresh the page
+    }
+});
+</script>
+<!-- This site wasnt actually designed for illegal uses -->
+<!-- This is the bottom of the internet iceburg -->
+<!-- Haha, ofc its not, but this it ********.com -->
+<!-- Oh damnit they got me -->
+<!-- If you are reading this, you are not the first, many travellers stop here on their journeys -->
+<!-- Nah Obviously you're the first, Mb if you got offended. -->
+<!-- First this millenium, that is, Hehehe... -->
+<!-- Tbf im probably dead when this is first read... well that is depressing... -->
+<!-- Cya furture person -->
 </html>
